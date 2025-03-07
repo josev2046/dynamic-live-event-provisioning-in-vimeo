@@ -51,7 +51,7 @@ This script allows users to create a live event on Vimeo directly from a web pag
     * It handles the creation of the live event, retrieval of credentials, and embedding of the player.
     * Error handling is included to display error messages to the user.
 * **Vimeo API:**
-    * The script uses the Vimeo API to create live events and retrieve event details.
+    * The script uses the Vimeo Live API to create live events and retrieve event details.
     * It utilises the POST method to create events and the GET method to retrieve event details.
     * The Accept header specifies the API version.
 
