@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vimeo Live Event Provisioning</title>
+</head>
+<body>
+  <button id="provisionButton">Provision Live Event</button>
+  <button id="refreshPlayerButton" style="display: none;">Refresh Player</button>
+  <div id="status"></div>
+  <div id="credentials"></div>
+  <div id="embedContainer"></div>
+
+  <script>
+    const provisionButton = document.getElementById('provisionButton');
+    const refreshPlayerButton = document.getElementById('refreshPlayerButton');
+    const statusDiv = document.getElementById('status');
+    const credentialsDiv = document.getElementById('credentials');
+    const embedContainer = document.getElementById('embedContainer');
+    let currentEmbedHtml = null;
+
+    provisionButton.addEventListener('click', async () => {
+      const accessToken = '{TOKEN}'; // Replace with your actual access token
+      const userId = '{USER}'; // Replace with your Vimeo user ID
+
+      const eventData = {
+        title: "Hello World",
+        stream_title: "Hello World",
+        auto_cc_enabled: false,
+        embed: {
+          autoplay: true,
+        },
+        stream_privacy: {
+          view: "anybody",
+        },
+        start_time: new Date().toISOString(), // Set start_time to current time
+        content_rating: "safe",
+      };
+
+      try {
+        statusDiv.innerHTML = "<p>Creating live event...</p>";
+
+        const createEventResponse = await fetch(`https://api.vimeo.com/users/${userId}/live_events`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.vimeo.*+json;version=3.4',
+          },
+          body: JSON.stringify(eventData),
+        });
+
+        if (!createEventResponse.ok) {
+          const errorData = await createEventResponse.json();
+          throw new Error(`Failed to create event: ${createEventResponse.status} - ${JSON.stringify(errorData)}`);
+        }
+
+        const newEventData = await createEventResponse.json();
+        const eventId = newEventData.uri.split('/').pop();
+
+        statusDiv.innerHTML = "<p>Retrieving credentials...</p>";
+
+        const credentialsResponse = await fetch(`https://api.vimeo.com/live_events/${eventId}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!credentialsResponse.ok) {
+          const errorData = await credentialsResponse.json();
+          throw new Error(`Failed to retrieve credentials: ${credentialsResponse.status} - ${JSON.stringify(errorData)}`);
+        }
+
+        const credentialsData = await credentialsResponse.json();
+
+        const rtmpLink = credentialsData.rtmp_link;
+        const rtmpsLink = credentialsData.rtmps_link;
+        const streamKey = credentialsData.stream_key;
+        currentEmbedHtml = credentialsData.embed.html;
+
+        credentialsDiv.innerHTML = `
+          <p>RTMP Link: ${rtmpLink}</p>
+          <p>RTMPS Link: ${rtmpsLink}</p>
+          <p>Stream Key: ${streamKey}</p>
+        `;
+
+        embedContainer.innerHTML = currentEmbedHtml;
+        refreshPlayerButton.style.display = 'block';
+
+        statusDiv.innerHTML = "<p>Event created and embedded successfully!</p>";
+      } catch (error) {
+        statusDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+        console.error('Error provisioning event:', error);
+      }
+    });
+
+    refreshPlayerButton.addEventListener('click', () => {
+      if (currentEmbedHtml) {
+        embedContainer.innerHTML = currentEmbedHtml;
+        statusDiv.innerHTML = "<p>Player refreshed.</p>";
+      } else {
+        statusDiv.innerHTML = "<p>No player to refresh.</p>";
+      }
+    });
+  </script>
+</body>
+</html>
