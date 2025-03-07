@@ -13,7 +13,7 @@ This script allows users to create a live event on Vimeo directly from a web pag
 
 1.  **Provision Live Event:**
     * Clicking the "Provision Live Event" button triggers the creation of a new live event on Vimeo.
-    * The script uses the Vimeo API to create the event, providing details such as the event title, stream title, and privacy settings.
+    * The script uses the Vimeo Live API to create the event, providing details such as the event title, stream title, and privacy settings.
     * Upon successful creation, the script retrieves the streaming credentials and the embed code for the player.
 2.  **Display Credentials:**
     * The RTMP and RTMPS links, along with the stream key, are displayed on the page, allowing users to configure their streaming software (e.g., OBS).
