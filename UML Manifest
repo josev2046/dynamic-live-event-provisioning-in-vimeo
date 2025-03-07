@@ -1,0 +1,18 @@
+@startuml
+participant User
+participant Webpage
+participant VimeoAPI
+
+User -> Webpage: Click "Provision Live Event"
+Webpage -> VimeoAPI: POST /users/{userId}/live_events (eventData, accessToken)
+VimeoAPI --> Webpage: Response (newEventData)
+Webpage -> VimeoAPI: GET /live_events/{eventId} (accessToken)
+VimeoAPI --> Webpage: Response (credentialsData)
+Webpage -> Webpage: Display Credentials & Embed Player
+User -> StreamingSoftware: Configure with RTMP/RTMPS & Stream Key
+StreamingSoftware -> VimeoAPI: Stream Data
+VimeoAPI -> Webpage: Live Stream
+User -> Webpage : Watch Live Stream
+User -> Webpage : Click "Refresh Player"
+Webpage -> Webpage : Re-embed player
+@enduml
