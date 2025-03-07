@@ -6,6 +6,9 @@ This repository contains a simple HTML and JavaScript script designed to provisi
 
 This script allows users to create a live event on Vimeo directly from a web page. It handles the API calls to Vimeo, retrieves the necessary streaming credentials (RTMP/RTMPS links, stream key), and embeds the live player into the page.
 
+![dynamic_live_provisioning](https://github.com/user-attachments/assets/ba443121-576b-4832-b298-4b2a9e5449a0)
+
+
 ## Functionality
 
 1.  **Provision Live Event:**
