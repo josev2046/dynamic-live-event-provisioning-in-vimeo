@@ -4,7 +4,7 @@ This repository contains a simple HTML and JavaScript script designed to provisi
 
 ## Overview
 
-This script allows users to create a live event on Vimeo directly from a web page. It handles the API calls to Vimeo, retrieves the necessary streaming credentials (RTMP/RTMPS links, stream key), and embeds the live player into the page.
+This script allows users to create a live event on Vimeo directly from a web page. It handles the API calls to Vimeo, retrieves the necessary streaming credentials, and embeds the live player into the page.
 
 ![dynamic_live_provisioning](https://github.com/user-attachments/assets/ba443121-576b-4832-b298-4b2a9e5449a0)
 
@@ -24,36 +24,6 @@ This script allows users to create a live event on Vimeo directly from a web pag
 5.  **Status Updates:**
     * The script provides status updates throughout the process, indicating whether the event was created successfully, whether credentials were retrieved, and if any errors occurred.
 
-## Usage
-
-1.  **Replace Placeholders:**
-    * In the JavaScript code, replace `{TOKEN}` with your Vimeo access token.
-    * Replace `{USER}` with your Vimeo user ID.
-2.  **Open in Browser:**
-    * Open the `index.html` file in a web browser.
-3.  **Provision Event:**
-    * Click the "Provision Live Event" button.
-4.  **Configure Streaming Software:**
-    * Use the displayed RTMP/RTMPS links and stream key to configure your streaming software.
-5.  **Start Streaming:**
-    * Begin streaming from your software.
-6.  **Watch Live Stream:**
-    * The live stream will appear in the embedded player on the web page.
-7. **Refresh Player:**
-    * Click the "Refresh Player" button to refresh the embedded player.
-
-## Code Explanation
-
-* **HTML Structure:**
-    * The HTML includes buttons for provisioning the event and refreshing the player, as well as divs for displaying status messages, credentials, and the embedded player.
-* **JavaScript Logic:**
-    * The JavaScript code uses the `fetch` API to make requests to the Vimeo API.
-    * It handles the creation of the live event, retrieval of credentials, and embedding of the player.
-    * Error handling is included to display error messages to the user.
-* **Vimeo API:**
-    * The script uses the Vimeo Live API to create live events and retrieve event details.
-    * It utilises the POST method to create events and the GET method to retrieve event details.
-    * The Accept header specifies the API version.
 
 ## Potential Use Cases
 
