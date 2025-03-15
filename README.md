@@ -28,3 +28,8 @@ This script allows users to create a live event on Vimeo directly from a web pag
 ## Potential Use Cases
 
 This script can be integrated into Content Management Systems (CMS) or Learning Management Systems (LMS) to provide live streaming functionality.
+
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15033306.svg)](https://doi.org/10.5281/zenodo.15033306)
+
+
