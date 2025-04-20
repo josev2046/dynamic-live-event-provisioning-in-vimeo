@@ -1,4 +1,5 @@
 # Vimeo Live Event Provisioning Script
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15033306.svg)](https://doi.org/10.5281/zenodo.15033306)
 
 This repository contains a simple HTML and JavaScript script designed to provision a live event on Vimeo and display the necessary credentials and embed code.
 
@@ -30,6 +31,6 @@ This script allows users to create a live event on Vimeo directly from a web pag
 This script can be integrated into Content Management Systems (CMS) or Learning Management Systems (LMS) to provide live streaming functionality.
 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15033306.svg)](https://doi.org/10.5281/zenodo.15033306)
+
 
 
